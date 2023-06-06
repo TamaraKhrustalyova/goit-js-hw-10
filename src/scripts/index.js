@@ -21,21 +21,21 @@ function onBreedSelected() {
   const selectedBreedId = refs.select.value;
   console.log(selectedBreedId)
   fetchCatByBreed(selectedBreedId)
-    .then((cat) => console.log(cat))
-    // .then((cat) => renderCatInfo(cat))  
+    .then((cat) => renderCatInfo(cat[0]))  
 }
 
-function renderCatInfo({temperament, description, name, image}) {
-    return `
-        <p>${description}</p>
-        // <img src="${image}">
-        // <h2>${name}</h2>
-        // <p>${temperament}</p>
+function renderCatInfo({breeds, url}) {
+    const {temperament, name, description, alt_names} = breeds[0];
+    const markup = `
+    
+        <img src="${url}" alt="${alt_names}">
+        <h2 class="title">${name}</h2>
+        <p class="description">${description}</p>
+        <p class="temperament">${temperament}</p>
     `;
+
+   refs.catInfo.innerHTML = markup;
 }
 
-// let catMarkup = renderCatInfo;
-// function apdateCatInfo(){
-//     refs.catInfo.innerHTML = catMarkup;
-// }
+
 
