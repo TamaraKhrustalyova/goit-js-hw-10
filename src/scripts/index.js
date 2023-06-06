@@ -1,27 +1,44 @@
+
+import Notiflix from 'notiflix';
 import { getBreeds, fetchCatByBreed} from "./cat-api.js"
 
 const refs = {
     select: document.querySelector('.breed-select'),
     catInfo: document.querySelector('.cat-info'),
+    loadingInfo: document.querySelector('.loader'),
 }
 
-getBreeds()
-    .then((cats) => cats.forEach(cat => addOptionToSelect(cat)))
-   
+document.addEventListener("DOMContentLoaded", onReload)
+
+function onReload(){
+    refs.select.classList.remove("visible")
+    getBreeds()
+    
+        .then((cats) => {
+            cats.forEach(cat => addOptionToSelect(cat))
+            
+        })
+        .catch ((error) => {
+            Notiflix.Notify.failure("Oops! Something went wrong! Try reloading the page!")
+        })
+        .finally(() => refs.loadingInfo.remove("visible"))
+}
+
 function addOptionToSelect({id, name}){
     optionText = name;
     optionValue = id;
-    refs.select.append(new Option(optionText, optionValue));
+    refs.select.append(new Option(optionText, optionValue));  
 }
 
 refs.select.addEventListener("change", onBreedSelected);
 
 function onBreedSelected() {
+    
   const selectedBreedId = refs.select.value;
-  console.log(selectedBreedId)
   fetchCatByBreed(selectedBreedId)
-    .then((cat) => renderCatInfo(cat[0]))  
-    // .then((cat) => console.log(cat[0]))  
+    .then((cat) => {
+        renderCatInfo(cat[0])
+    })
 }
 
 function renderCatInfo({breeds, url}) {
