@@ -6,7 +6,6 @@ const refs = {
 }
 
 getBreeds()
-    // .then((cats) => console.log(cats))
     .then((cats) => cats.forEach(cat => addOptionToSelect(cat)))
    
     
