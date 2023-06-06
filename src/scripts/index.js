@@ -16,11 +16,10 @@ function onReload(){
     
         .then((cats) => {
             cats.forEach(cat => addOptionToSelect(cat))
-            
         })
-        .catch ((error) => {
-            Notiflix.Notify.failure("Oops! Something went wrong! Try reloading the page!")
-        })
+        // .catch ((error) => {
+        //     Notiflix.Notify.failure("Oops! Something went wrong! Try reloading the page!")
+        // })
         .finally(() => refs.loadingInfo.remove("visible"))
 }
 
@@ -33,7 +32,7 @@ function addOptionToSelect({id, name}){
 refs.select.addEventListener("change", onBreedSelected);
 
 function onBreedSelected() {
-    
+
   const selectedBreedId = refs.select.value;
   fetchCatByBreed(selectedBreedId)
     .then((cat) => {
