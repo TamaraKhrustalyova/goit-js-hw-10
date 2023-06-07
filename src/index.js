@@ -1,6 +1,6 @@
 
 import Notiflix from 'notiflix';
-import { getBreeds, fetchCatByBreed} from "./cat-api.js"
+import { getBreeds, fetchCatByBreed} from "./js/cat-api.js"
 
 const refs = {
     select: document.querySelector('.breed-select'),
