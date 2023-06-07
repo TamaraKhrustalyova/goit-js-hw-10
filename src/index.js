@@ -25,9 +25,6 @@ function onReload(){
 }
 
 function addOptionToSelect({id, name}){
-    // optionText = name;
-    // optionValue = id;
-    // refs.select.append(new Option(optionText, optionValue));  
     const option = `<option value="${id}">${name}</option>`
     refs.select.insertAdjacentHTML('beforeend', option);
 }
