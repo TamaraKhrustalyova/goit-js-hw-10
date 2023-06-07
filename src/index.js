@@ -18,7 +18,8 @@ function onReload(){
             new SlimSelect({
                 select: '#selectElement',
                 settings: {
-                   showSearch: true,},
+                    showSearch: false,
+                   },
               })
             refs.select.classList.remove('is-hidden')
         })
