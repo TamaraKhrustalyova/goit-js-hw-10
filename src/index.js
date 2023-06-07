@@ -11,11 +11,11 @@ const refs = {
 document.addEventListener("DOMContentLoaded", onReload)
 
 function onReload(){
-    refs.select.classList.remove("visible")
-    getBreeds()
     
+    getBreeds()
         .then((cats) => {
             cats.forEach(cat => addOptionToSelect(cat))
+            refs.select.classList.remove('is-hidden')
         })
         // .catch ((error) => {
         //     Notiflix.Notify.failure("Oops! Something went wrong! Try reloading the page!")
