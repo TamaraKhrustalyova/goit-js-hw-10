@@ -8,10 +8,6 @@ body {
     display: block;
   }
 
-  loader.hidden {
-    display: none;
-  }
-    
   .breed-select.hidden {
     display: none;
   }
