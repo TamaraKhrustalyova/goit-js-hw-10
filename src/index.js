@@ -11,38 +11,41 @@ const refs = {
 document.addEventListener("DOMContentLoaded", onReload)
 
 function onReload(){
-    
+    refs.loadingInfo.classList.remove('is-hidden')
+
     getBreeds()
         .then((cats) => {
             cats.forEach(cat => addOptionToSelect(cat))
-            new SlimSelect({
-                select: '#selectElement',
-                settings: {
-                    showSearch: false,
-                   },
-              })
             refs.select.classList.remove('is-hidden')
+            refs.loadingInfo.classList.add('is-hidden')
         })
         // .catch ((error) => {
         //     Notiflix.Notify.failure("Oops! Something went wrong! Try reloading the page!")
         // })
-        .finally(() => refs.loadingInfo.remove("visible"))
 }
 
 function addOptionToSelect({id, name}){
-    optionText = name;
-    optionValue = id;
-    refs.select.append(new Option(optionText, optionValue));  
+    // optionText = name;
+    // optionValue = id;
+    // refs.select.append(new Option(optionText, optionValue));  
+    const option = `<option value="${id}">${name}</option>`
+    refs.select.insertAdjacentHTML('beforeend', option);
 }
 
 refs.select.addEventListener("change", onBreedSelected);
 
 function onBreedSelected() {
-
+   
   const selectedBreedId = refs.select.value;
+  refs.loadingInfo.classList.remove('is-hidden');
+  refs.catInfo.classList.add('is-hidden');
+
   fetchCatByBreed(selectedBreedId)
     .then((cat) => {
         renderCatInfo(cat[0])
+        refs.loadingInfo.classList.remove('is-hidden')
+        refs.loadingInfo.classList.add('is-hidden');
+        refs.catInfo.classList.remove('is-hidden');
     })
 }
 
