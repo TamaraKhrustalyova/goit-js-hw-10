@@ -11,16 +11,7 @@ body {
   loader.hidden {
     display: none;
   }
-
-  .breed-select {
-    width: 180px;
-    height: 10px;
-    border-radius: 10px;
-    background-color: white;
-    padding:15px;
-    margin-top: 20px;
-  }
-  
+    
   .breed-select.hidden {
     display: none;
   }
