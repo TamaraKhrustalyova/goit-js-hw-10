@@ -19,9 +19,10 @@ function onReload(){
             refs.select.classList.remove('is-hidden')
             refs.loadingInfo.classList.add('is-hidden')
         })
-        // .catch ((error) => {
-        //     Notiflix.Notify.failure("Oops! Something went wrong! Try reloading the page!")
-        // })
+        .catch (() => {
+            refs.loadingInfo.classList.add('is-hidden')
+            Notiflix.Notify.failure("Oops! Something went wrong! Try reloading the page!")
+        })
 }
 
 function addOptionToSelect({id, name}){
@@ -40,9 +41,14 @@ function onBreedSelected() {
   fetchCatByBreed(selectedBreedId)
     .then((cat) => {
         renderCatInfo(cat[0])
-        refs.loadingInfo.classList.remove('is-hidden')
+        refs.loadingInfo.classList.remove('is-hidden');
         refs.loadingInfo.classList.add('is-hidden');
         refs.catInfo.classList.remove('is-hidden');
+    })
+    .catch (() => {
+        refs.loadingInfo.classList.add('is-hidden');
+        refs.select.classList.add('is-hidden')
+        Notiflix.Notify.failure("Oops! Something went wrong! Try reloading the page!")
     })
 }
 
