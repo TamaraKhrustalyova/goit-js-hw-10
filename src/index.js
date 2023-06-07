@@ -1,4 +1,4 @@
-
+import SlimSelect from 'slim-select';
 import Notiflix from 'notiflix';
 import { getBreeds, fetchCatByBreed} from "./js/cat-api.js"
 
@@ -15,6 +15,11 @@ function onReload(){
     getBreeds()
         .then((cats) => {
             cats.forEach(cat => addOptionToSelect(cat))
+            new SlimSelect({
+                select: '#selectElement',
+                settings: {
+                   showSearch: true,},
+              })
             refs.select.classList.remove('is-hidden')
         })
         // .catch ((error) => {
