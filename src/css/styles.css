@@ -8,10 +8,6 @@ body {
     display: block;
   }
 
-  .breed-select.hidden {
-    display: none;
-  }
-
   .text-info {
     display: block;
     width: 600px;
@@ -43,3 +39,6 @@ body {
     clip: rect(0 0 0 0);
     overflow: hidden;
   }
+
+  
+  

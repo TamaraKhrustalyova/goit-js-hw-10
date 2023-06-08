@@ -1,4 +1,4 @@
-
+import SlimSelect from 'slim-select'
 import Notiflix from 'notiflix';
 import { getBreeds, fetchCatByBreed} from "./js/cat-api.js"
 
@@ -26,8 +26,10 @@ function onReload(){
 }
 
 function addOptionToSelect({id, name}){
+
     const option = `<option value="${id}">${name}</option>`
     refs.select.insertAdjacentHTML('beforeend', option);
+
 }
 
 refs.select.addEventListener("change", onBreedSelected);
@@ -47,7 +49,6 @@ function onBreedSelected() {
     })
     .catch (() => {
         refs.loadingInfo.classList.add('is-hidden');
-        refs.select.classList.add('is-hidden')
         Notiflix.Notify.failure("Oops! Something went wrong! Try reloading the page!")
     })
 }
